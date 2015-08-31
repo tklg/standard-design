@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #628fce;
+}
+iframe {
+    position: absolute;
+	height: calc(100% - 40px);
+	width: 100%;
+    padding: 0;
+	margin: 0;
+	border: none;
+}
+.buttons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    background: white;
+}
+.buttons button {
+    height: 100%;
+    width: 8.33333%;
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    font-size: 130%;
+    color: gray;
+    float: left;
+}
+.buttons button:hover,
+.buttons button:focus {
+    background: darkgray;
+}
+</style>
+</head>
+<body>
+
+<iframe id="bla" src="login4.php"></iframe>
+<div class="buttons">
+    <button onclick="document.getElementById('bla').src = 'login1.php'">1</button>
+    <button onclick="document.getElementById('bla').src = 'login2.php'">2</button>
+    <button onclick="document.getElementById('bla').src = 'login3.php'">3</button>
+    <button onclick="document.getElementById('bla').src = 'login4.php'">4</button>
+    <button onclick="document.getElementById('bla').src = 'login5.php'">5</button>
+    <button onclick="document.getElementById('bla').src = 'login6.php'">6</button>
+    <button onclick="document.getElementById('bla').src = 'login7.php'">7</button>
+    <button onclick="document.getElementById('bla').src = 'login8.php'">8</button>
+    <button onclick="document.getElementById('bla').src = 'login9.php'">9</button>
+    <button onclick="document.getElementById('bla').src = 'login10.php'">10</button>
+    <button onclick="document.getElementById('bla').src = 'login11.php'">11</button>
+    <button onclick="document.getElementById('bla').src = 'login12.php'">12</button>
+</div>
+
+</body>
+</html>
