@@ -8,7 +8,9 @@ function sanitize($s) {
  	$db = mysqli_connect($dbhost,$dbuname,$dbupass,$dbname);
  	return htmlentities(preg_replace('/\<br(\s*)?\/?\>/i', "\n", mysqli_real_escape_string($db, $s)), ENT_QUOTES);
 }
-if(isset($_POST['connect_database'])) {
+if (isset($installed) && $installed) {
+	header("Location: ../index");
+} else if(isset($_POST['connect_database'])) {
 	$dbhost = $_POST['dbhost'];
 	$dbuname = $_POST['dbuser'];
 	$dbupass = $_POST['dbpass'];
@@ -20,6 +22,7 @@ $dbuname = "' . $dbuname . '";
 $dbupass = "' . $dbupass . '";
 $dbhost = "' . $dbhost . '";
 $dbname = "' . $dbname . '";
+$installed = true;
 ';
 	    $fp = fopen($db_config_path, "w");
         fwrite($fp, $string);
@@ -51,8 +54,10 @@ $dbname = "' . $dbname . '";
 	$email = sanitize($_POST['email']);
 	$upass = password_hash($_POST['password'], PASSWORD_BCRYPT);
 	$date = date("F j, Y");
-	$sql = "INSERT INTO USERS (name, pass, display_name, email, access_level, join_date)
-        VALUES ('$uname', 
+	$sql = "INSERT INTO USERS (PID, name, pass, display_name, email, access_level, join_date)
+        VALUES (
+        1,
+        '$uname', 
         '$upass',
         '$uname',
         '$email',
@@ -71,7 +76,7 @@ $dbname = "' . $dbname . '";
         owner VARCHAR(50),
         item_name VARCHAR(100),
         item_type VARCHAR(50),
-        item_size DOUBLE(30, 2),
+        item_size DOUBLE(30, 2)
         )';
 	if (mysqli_query($db, $sql)) {
 		echo 0;
@@ -83,6 +88,7 @@ $dbname = "' . $dbname . '";
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <style type="text/css">
 	html, body {
 		height: 100%;
@@ -91,7 +97,6 @@ $dbname = "' . $dbname . '";
 		padding: 0;
 		font-family: sans-serif;
 		background: #628fce;
-		overflow-x: hidden;
 	}
     :selection {
         background: #2b65ec;  
@@ -106,11 +111,9 @@ $dbname = "' . $dbname . '";
         transition: all .3s ease;
     }
 	.content {
-		left: 10%;
-		width: 80%;
-		margin:auto;
-		/*position: absolute;*/
-		height: 100%;
+		width: 320px;
+		top:0;bottom:0;right:0;left:0;margin:auto;
+		position: absolute;
 	}
 	.inputbar {
 		position: relative;
@@ -222,6 +225,22 @@ $dbname = "' . $dbname . '";
     .inputbar a:last-of-type {
         float: right;
     }
+    .error {
+    	width: 100%;
+    	border: 1px solid red;
+    	padding: 2px 0;
+    	text-indent: 4px;
+    	border-top: none;
+    	color: red;
+    	height: 0;
+    	opacity: 0;
+    	-webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease;
+    }
+    .error.error-active {
+    	height: 18px;
+    	opacity: 1;
+    }
 </style>
     <title>Title - Login</title>
 </head>
@@ -251,6 +270,7 @@ $dbname = "' . $dbname . '";
 				<input required name="email" class="userinfo" id="email" type="text">
 				<span class="placeholder-userinfo nosel">Admin Email</span>
 				<div class="input-underline"></div>
+				<div class="error"><div class="error-message">Invalid Email Address</div></div>
 			</label>
 		</div>
 		<div class="inputbar nosel">
@@ -357,7 +377,7 @@ $dbname = "' . $dbname . '";
     $('#install').submit(function(e) {
     	e.preventDefault()
     	install();
-    })
+    });
     function install() {
     	openStat();
     	$.post('index.php',
@@ -428,6 +448,16 @@ $dbname = "' . $dbname . '";
     	$('.result').removeClass('result-active');
     }
 	function error(e, message) {
+		if (message.includes('No such host is known')) {
+			message = 'Host lookup failed';
+			$('#dbhost').focus();
+		} else if (message.includes('Access denied for user')) {
+			message = 'Access denied for DB User';
+			$('#dbuser').focus();
+		} else if (message.includes('Unknown database')) {
+			message = 'Database not found';
+			$('#dbname').focus();
+		}
 		$('.result #'+e+' .output-status').html(message).addClass('output-status-failed');
 	}
     function success(step) {
@@ -436,6 +466,15 @@ $dbname = "' . $dbname . '";
     function finish() {
     	$('#button-submit').html("Done!").attr('onclick', 'window.location = "../index.php"');
     }
+    $('#email').blur(function() {
+    	if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test($('#email').val())) {
+    		$('.error').removeClass('error-active');
+    	} else {
+    		if ($('#email').val() != '') {
+    			$('.error').addClass('error-active');
+    		}
+    	}
+    });
     </script>
 </body>
 </html>

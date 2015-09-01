@@ -4,32 +4,30 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <style type="text/css">
-	html, body {
-		height: 100%;
-		width: 100%;
-		margin: 0;
-		padding: 0;
-		font-family: sans-serif;
-		background: #628fce;
-	}
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: #628fce;
+    }
     :selection {
         background: #2b65ec;  
     }
-	.wrapper {
-		height: 400px;
-		width: 400px;
-		position: absolute;
-		top:0;bottom:0;right:0;left:0;margin:auto;
-/*        background: black*/
+    .wrapper {
+        height: 200px;
+        width: 320px;
+        position: absolute;
+        top:0;bottom:0;right:0;left:0;margin:auto;
     }
-	.content {
-		left: 10%;
-		width: 80%;
-		height: 240px;
-		top:0;bottom:0;margin:auto;
-		position: absolute;
-	}
+    .content {
+        width: 320px;
+        top:0;bottom:0;right:0;left:0;margin:auto;
+        position: absolute;
+    }
 	.inputbar {
 		position: relative;
 		width: 100%;
@@ -140,36 +138,46 @@ session_start();
     .inputbar a:last-of-type {
         float: right;
     }
+    .error {
+    	width: 100%;
+    	border: 1px solid red;
+    	padding: 2px 0;
+    	text-indent: 4px;
+    	border-top: none;
+    	color: red;
+    	height: 0;
+    	opacity: 0;
+    	-webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease;
+    }
+    .error.error-active {
+    	height: 18px;
+    	opacity: 1;
+    }
 </style>
-    <title>Title - Login</title>
+    <title>Title - Recover Account</title>
 </head>
 <body>
 <h1 class="title">
-    StandardLogin 4
+    StandardLogin 4 - Recover
 </h1>
 <section class="wrapper">
 	<section class="content">
-    <form name="login" action="uauth.php" method="post">
+    <form name="recover" action="uauth.php" method="post">
 		<div class="inputbar nosel">
 			<label class="userlabel">
-				<input name="username" class="userinfo" id="username" type="text">
-				<span class="placeholder-userinfo nosel">Username</span>
+				<input name="email" class="userinfo" id="email" type="text" autofocus>
+				<span class="placeholder-userinfo nosel">Email</span>
 				<div class="input-underline"></div>
-			</label>
-		</div>
-		<div class="inputbar nosel">
-			<label class="userlabel">
-				<input name="password" class="userinfo" id="userpass" type="password">
-				<span class="placeholder-userinfo nosel">Password</span>
-				<div class="input-underline"></div>
+				<div class="error"><div class="error-message">Invalid Email Address</div></div>
 			</label>
 		</div>
         <section class="inputbar nosel nomargin">
-            <button class="btn btn-submit" type="submit">Sign In</button>
+            <button class="btn btn-submit" type="submit">Send Recovery Email</button>
         </section>
         <div class="inputbar">
-            <a href="register.php">Create an Account</a>
-            <a href="recover.php">Forgot Password?</a>
+            <a href="login">Login</a>
+            <a href="register">Create an Account</a>
         </div>
     </form>
 	</section>
@@ -177,12 +185,20 @@ session_start();
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        var user = $('#username').val();
-        $('#username').attr('empty', (user != '') ? 'false' : 'true');
-        ((user == '') ? $('#username') : $('#userpass')).focus();
+        var user = $('#email').val();
+        $('#email').attr('empty', (user != '') ? 'false' : 'true');
     });
     $('input.userinfo').change(function() {
         $(this).attr('empty', ($(this).val() != '') ? 'false' : 'true');
+    });
+    $('#email').blur(function() {
+    	if (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g.test($('#email').val())) {
+    		$('.error').removeClass('error-active');
+    	} else {
+    		if ($('#email').val() != '') {
+                $('.error').addClass('error-active');
+            }
+    	}
     });
     </script>
 </body>

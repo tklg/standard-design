@@ -37,27 +37,28 @@ iframe {
     float: left;
 }
 .buttons button:hover,
-.buttons button:focus {
+.buttons button:focus,
+.buttons button.active {
     background: darkgray;
 }
 </style>
 </head>
 <body>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <iframe id="bla" src="login4.php"></iframe>
 <div class="buttons">
-    <button onclick="document.getElementById('bla').src = 'login1.php'">1</button>
-    <button onclick="document.getElementById('bla').src = 'login2.php'">2</button>
-    <button onclick="document.getElementById('bla').src = 'login3.php'">3</button>
-    <button onclick="document.getElementById('bla').src = 'login4.php'">4</button>
-    <button onclick="document.getElementById('bla').src = 'login5.php'">5</button>
-    <button onclick="document.getElementById('bla').src = 'login6.php'">6</button>
-    <button onclick="document.getElementById('bla').src = 'login7.php'">7</button>
-    <button onclick="document.getElementById('bla').src = 'login8.php'">8</button>
-    <button onclick="document.getElementById('bla').src = 'login9.php'">9</button>
-    <button onclick="document.getElementById('bla').src = 'login10.php'">10</button>
-    <button onclick="document.getElementById('bla').src = 'login11.php'">11</button>
-    <button onclick="document.getElementById('bla').src = 'login12.php'">12</button>
+    <button onclick="document.getElementById('bla').src = 'login1.php';$(this).addClass('active').siblings().removeClass('active');">1</button>
+    <button onclick="document.getElementById('bla').src = 'login2.php';$(this).addClass('active').siblings().removeClass('active');">2</button>
+    <button onclick="document.getElementById('bla').src = 'login3.php';$(this).addClass('active').siblings().removeClass('active');">3</button>
+    <button class="active" onclick="document.getElementById('bla').src = 'login.php';$(this).addClass('active').siblings().removeClass('active');">4</button>
+    <button onclick="document.getElementById('bla').src = 'login5.php';$(this).addClass('active').siblings().removeClass('active');">5</button>
+    <button onclick="document.getElementById('bla').src = 'login6.php';$(this).addClass('active').siblings().removeClass('active');">6</button>
+    <button onclick="document.getElementById('bla').src = 'login7.php';$(this).addClass('active').siblings().removeClass('active');">7</button>
+    <button onclick="document.getElementById('bla').src = 'login8.php';$(this).addClass('active').siblings().removeClass('active');">8</button>
+    <button onclick="document.getElementById('bla').src = 'login9.php';$(this).addClass('active').siblings().removeClass('active');">9</button>
+    <button onclick="document.getElementById('bla').src = 'login10.php';$(this).addClass('active').siblings().removeClass('active');">10</button>
+    <button onclick="document.getElementById('bla').src = 'login11.php';$(this).addClass('active').siblings().removeClass('active');">11</button>
+    <button onclick="document.getElementById('bla').src = 'login12.php';$(this).addClass('active').siblings().removeClass('active');">12</button>
 </div>
 
 </body>
