@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html leng="en-US">
+<head>
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/main.css">
+<link rel="icon" type="image/ico" href="favicon.ico">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"> -->
+    <title>Standard Input</title>
+</head>
+<body>
+<section class="wrapper">
+	<section class="content">
+    <form name="form1" id="form1" autocomplete="off" action="" method="get" onsubmit="return false;">
+		<fieldset id="">
+        <legend>Set 1</legend>
+        <section class="inputbar nosel">
+			<label class="userlabel">
+				<input name="input1" class="userinfo" id="input1" type="text" required pattern="[a-zA-Z][a-zA-Z'\-_ ]*" title="First name cannot be blank.">
+				<span class="placeholder-userinfo nosel">Input 1</span>
+				<div class="input-underline"></div>
+			</label>
+		</section>
+		<section class="inputbar nosel">
+			<label class="userlabel">
+				<input name="input2" class="userinfo" id="input2" type="password" required pattern="[a-zA-Z][a-zA-Z'\-_ ]*" title="Password must be at least 8 characters">
+				<span class="placeholder-userinfo nosel">Password 2</span>
+				<div class="input-underline"></div>
+			</label>
+		</section>
+        </fieldset>
+        
+        <fieldset id="">
+        <legend>Set 2</legend>
+        <section class="inputbar nosel">
+			<label class="userlabel">
+				<select name="input3" class="userinfo" id="input3" required>
+				    <option selected>Select 3</option>
+                    <optgroup label="group 1">
+                        <option value="">a</option>
+                        <option value="" disabled>b</option>
+                        <option value="">c</option>
+                    </optgroup>
+                    <optgroup label="group 2">
+                        <option value="">d</option>
+                        <option value="">e</option>
+                        <option value="">f</option>
+                    </optgroup>
+                </select>
+                <div class="input-underline"></div>
+			</label>
+		</section>
+		<section class="inputbar colorbar nosel">
+			<label class="userlabel">
+				<input name="input4" class="userinfo" id="input4" type="color" defaultValue="#45545c" value="#45545c">
+                <span class="userinfo-color-title">Color 4</span>
+<!--				<div class="input-underline"></div>-->
+			</label>
+		</section>
+        <section class="inputbar nosel">
+			<label class="userlabel">
+				<input name="input5" class="userinfo" id="input5" type="text" required maxlength="10" pattern="\d{5}(\-\d{4})?" title="Zipcode must be XXXXX or XXXXX-XXXX">
+				<span class="placeholder-userinfo nosel">Enter Zipcode</span>
+				<div class="input-underline"></div>
+			</label>
+		</section>
+        <section class="inputbar nosel">
+			<label class="userlabel">
+				<input name="input6" class="userinfo" id="input6" type="number" required  pattern=".*" title="">
+				<span class="placeholder-userinfo nosel">Enter Amount</span>
+				<div class="input-underline"></div>
+			</label>
+		</section>
+        </fieldset>
+        
+        <fieldset id="">
+        <legend>Set 3</legend>
+        <section class="inputbar nosel">
+            <span class="placeholder-userinfo-nodynamic nosel">Switch 7</span>
+            <label class="checkboxlabel">
+				<input name="c1" value="v1" type="checkbox" checked>
+                <div class="checkboxswitch"></div>
+			</label>
+		</section>
+		<section class="inputbar nosel">
+            <span class="placeholder-userinfo-nodynamic nosel">Switch 8</span>
+            <label class="checkboxlabel">
+                <input name="c1" value="v2" type="checkbox">
+                <div class="checkboxswitch"></div>
+            </label>
+		</section>
+        </fieldset>
+        <fieldset id="">
+        <legend>Set 4</legend>
+        <section class="inputbar nosel">
+            <span class="placeholder-userinfo-nodynamic nosel">Radio 9</span>
+            <label class="checkboxlabel">
+				<input name="c2" value="v1" type="radio" checked>
+                <div class="checkboxswitch"></div>
+			</label>
+		</section>
+		<section class="inputbar nosel">
+            <span class="placeholder-userinfo-nodynamic nosel">Radio 10</span>
+            <label class="checkboxlabel">
+                <input name="c2" value="v2" type="radio">
+                <div class="checkboxswitch"></div>
+            </label>
+		</section>
+        <section class="inputbar nosel">
+			<label class="userlabel">
+				<input name="input6" class="userinfo" id="input6" type="date" required title="">
+<!--				<span class="placeholder-userinfo nosel">mm/dd/yyyy</span>-->
+				<div class="input-underline"></div>
+			</label>
+		</section>
+        </fieldset>
+        <fieldset id="">
+        <legend>Set 5</legend>
+        <section class="inputbar inputbar-textarea nosel">
+            <label class="userlabel">
+                <textarea class="userinfo" name="c1" value="v1"></textarea>
+                <span class="placeholder-userinfo nosel">Textarea 11</span>
+			     <div class="input-underline"></div>
+            </label>
+		</section>
+        </fieldset>
+        
+        <section class="inputbar inputbar-half nosel nomargin">
+            <button class="btn btn-submit btn-flat btn-default waves-effect waves-light">Clear All</button>
+        </section>
+        <section class="inputbar inputbar-half nosel nomargin">
+            <button class="btn btn-submit btn-flat btn-positive waves-effect waves-light" type="submit">Submit</button>
+        </section>
+    </form>
+	</section>
+</section>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script type="text/javascript">
+    $('.userinfo').change(function() {
+        $(this).attr('empty', ($(this).val() != '') ? 'false' : 'true');
+    });
+    </script>
+</body>
+</html>

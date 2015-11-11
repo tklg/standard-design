@@ -18,7 +18,7 @@ session_start();
         background: #2b65ec;  
     }
     .wrapper {
-        height: 200px;
+        height: 270px;
         width: 320px;
         position: absolute;
         top:0;bottom:0;right:0;left:0;margin:auto;
@@ -154,6 +154,11 @@ session_start();
     	height: 18px;
     	opacity: 1;
     }
+    .instructions {
+        color: white;
+        margin-bottom: 60px;
+        display: none;
+    }
 </style>
     <title>Title - Recover Account</title>
 </head>
@@ -164,7 +169,10 @@ session_start();
 <section class="wrapper">
 	<section class="content">
     <form name="recover" action="uauth.php" method="post">
-		<div class="inputbar nosel">
+        <p class="instructions">
+            Please enter your email address below and we'll send you instructions on how to set a new password.
+        </p>
+        <div class="inputbar nosel">
 			<label class="userlabel">
 				<input name="email" class="userinfo" id="email" type="text" autofocus>
 				<span class="placeholder-userinfo nosel">Email</span>

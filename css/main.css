@@ -1,0 +1,248 @@
+html, body {
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		font-family: sans-serif;
+		background: #263238;
+	}
+::selection {
+	color: #00796B;
+	background: #1de986;
+}
+::-webkit-scrollbar {
+    width: 14px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.7);
+    background: #243135;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #1DE96B;
+    /*border-radius: 9px;*/
+    /*outline: 1px solid #009688;*/
+}
+.wrapper {
+	height: calc(100% - 80px);
+	width: 360px;
+	position: absolute;
+	top:0;bottom:0;
+    right:0;left:0;margin:auto;
+}
+fieldset {
+    color: rgba(255,255,255,.5);
+    border: 2px solid rgba(255,255,255,.1);
+    margin-bottom: 10px;
+    padding: 16px 20px;
+}
+.content {
+	width: 100%;
+	top:0;bottom:0;right:0;left:0;margin:auto;
+	position: absolute;
+}
+.inputbar {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+}
+.inputbar:last-of-type {
+    margin-bottom: 0;
+}
+.inputbar-half {
+    width: 48%;
+}
+.inputbar-half:nth-child(odd) {
+    float: right;
+}
+.inputbar-half:nth-child(even) {
+    float: left;
+}
+.userlabel {
+	color: white;
+}
+.userinfo {
+	color: white;
+	font-size: 110%;
+	width: 100%;
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid rgba(255,255,255,.1);
+	padding: 7px 0;
+	text-indent: 10px;
+}
+input:active,
+input:focus,
+select:focus,
+select:active {
+	outline: 0 none;
+}
+.placeholder-userinfo {
+	color: white;
+	position: absolute;
+	top: 11px;
+	left: 10px;
+	cursor: text;
+	user-select: none;
+	-webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease;
+}
+.input-underline {
+	margin-top: -2px;
+	position: absolute;
+	height: 2px;
+	width: 0;
+	left: 50%;
+	background: #1DE96B;
+	-webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease;
+}
+.userinfo:focus ~ .input-underline {
+	width: 100%;
+	left: 0;
+}
+.userinfo:focus ~ .placeholder-userinfo,
+.userinfo[empty="false"] ~ .placeholder-userinfo {
+	top: -14px;
+	left: 0;
+	font-size: 70%;
+    color: #1DE96B;
+}
+.userinfo option {
+    background: #45545c;
+}
+.userinfo optgroup {
+    background: #2d3a41;
+}
+.userinfo-color-title {
+    position: absolute;
+    top: 16px;
+    left: 14px;
+}
+.userinfo[type='color'] {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.inputbar.colorbar {
+    margin-bottom: 20px;
+}
+.nosel {
+	-webkit-touch-callout: none;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.title {
+    color:  #1DE96B;
+    font-size: 200%;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    padding: 10px 0;
+    text-indent: 15px;
+    margin: 0;
+    font-weight: normal;
+    display: none;
+}
+.btn {
+    background: #45545c;
+    padding: 12px 0;
+    border: none;
+    outline: 0 none;
+    width: 100%;
+    font-size: 104%;
+    color: white;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease;
+}
+.btn-default {
+    background: #45545c;
+}
+.btn-positive {
+    background: #1de96b;
+}
+.btn-negative {
+    background: #d4455e;
+}
+.btn-default:hover {
+    background: #61747e;
+}
+.btn-positive:hover {
+    background: #91fab9;
+}
+.btn-negative:hover {
+    background: #90283a;
+}
+.nomargin {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #1DE96B;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease;
+}
+a:hover,
+a:focus {
+    color: #517ee8;
+}
+.inputbar a {
+    font-size: 80%;   
+}
+.inputbar a:last-of-type {
+    float: right;
+}
+.nointeract {
+	z-index: -1;
+}
+.checkboxlabel {
+    display: inline-block;
+    height: 20px;
+    width: 40px;
+    border-radius: 10px;
+    border: 1px solid #45545c;
+    vertical-align: middle;
+    cursor: pointer;
+    float: right;
+}
+.checkboxlabel input {
+    display: none;
+}
+.checkboxswitch {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #45545c;
+    border: 1px solid #263238;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease;
+}
+.checkboxlabel input:checked + .checkboxswitch {
+    background: #1de96b;
+    margin-left: 20px;
+}
+.placeholder-userinfo-nodynamic {
+    color: white;
+    padding: 0 10px;
+}
+.inputbar-textarea {
+    min-height: 100px;
+    padding-bottom: 20px;
+}
+.userlabel textarea {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    font-family: sans-serif;
+}
