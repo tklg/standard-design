@@ -96,6 +96,7 @@ select:active {
 	background: #1DE96B;
 	-webkit-transition: all .3s ease-in-out;
     transition: all .3s ease;
+	border: none;
 }
 .userinfo:focus ~ .input-underline {
 	width: 100%;
